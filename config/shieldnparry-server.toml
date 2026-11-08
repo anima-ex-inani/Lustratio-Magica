@@ -1,0 +1,75 @@
+[parry_restrictions]
+	#Damage types that CANNOT be parried (blacklist)
+	unparriableDamageTypes = ["minecraft:out_of_world", "minecraft:magic", "minecraft:indirect_magic", "minecraft:thorns", "minecraft:dragon_breath", "minecraft:starve", "minecraft:freeze", "minecraft:wither"]
+	#Enchantments that make attacks unparriable
+	unparriableEnchantments = ["minecraft:piercing"]
+
+[parry_window]
+	#Base parry window in seconds (default: 0.3333)
+	# Default: 0.3333
+	# Range: 0.1 ~ 1.0
+	baseParryWindow = 0.25
+	#How much attack speed affects parry window (default: 2.6667)
+	# Default: 2.6667
+	# Range: 0.0 ~ 10.0
+	speedToWindowMultiplier = 2.6667
+	#Minimum parry window in ticks (default: 1)
+	# Default: 1
+	# Range: 1 ~ 10
+	minParryWindowTicks = 2
+	#Maximum parry window in ticks (default: 5)
+	# Default: 5
+	# Range: 1 ~ 20
+	maxParryWindowTicks = 10
+	#Additional ticks per level of Parry Window enchantment (default: 1.0)
+	# Default: 1.0
+	# Range: 0.0 ~ 5.0
+	windowEnchantmentBonus = 1.0
+	#Freeze duration in ticks when parrying (0-5, 0 = disabled)
+	# Default: 2
+	# Range: 0 ~ 5
+	freezeDurationTicks = 2
+
+[parry_effectiveness]
+	#Flat damage blocked regardless of weapon (default: 2.4)
+	# Default: 2.4
+	# Range: 0.0 ~ 20.0
+	flatDamageBlock = 2.5
+	#Weapon damage to block conversion multiplier (default: 0.6)
+	# Default: 0.6
+	# Range: 0.0 ~ 2.0
+	weaponDamageBlockMultiplier = 1
+	#Damage reduction multiplier for damage above blocked amount (default: 0.015)
+	# Default: 0.015
+	# Range: 0.0 ~ 0.1
+	damageReductionMultiplier = 0.1
+	#Maximum damage reduction percentage (default: 0.36)
+	# Default: 0.36
+	# Range: 0.0 ~ 0.95
+	maxDamageReduction = 0.75
+
+[cooldowns]
+	#Base parry cooldown in ticks (default: 85)
+	# Default: 85
+	# Range: 10 ~ 200
+	baseParryCooldown = 100
+	#How much attack speed reduces cooldown (default: 33.333)
+	# Default: 33.333
+	# Range: 0.0 ~ 100.0
+	speedToCooldownMultiplier = 0
+	#Minimum cooldown in ticks (default: 6)
+	# Default: 6
+	# Range: 1 ~ 50
+	minCooldownTicks = 50
+	#Maximum cooldown in ticks (default: 130)
+	# Default: 130
+	# Range: 50 ~ 300
+	maxCooldownTicks = 150
+	#Base failure cooldown in ticks (default: 80)
+	# Default: 80
+	# Range: 20 ~ 200
+	failureCooldown = 100
+	#Additional cooldown per consecutive failure (default: 5.0)
+	# Default: 5.0
+	# Range: 0.0 ~ 20.0
+	consecutiveFailurePenalty = 0.0

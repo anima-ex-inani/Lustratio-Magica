@@ -1,0 +1,12 @@
+name = "bosslike-ender-dragon-1.5.0-1.21.1-neoforge"
+filename = "bosslike-ender-dragon-1.5.0-1.21.1-neoforge.jar"
+side = "both"
+
+[download]
+url = "https://edge.forgecdn.net/files/9203/933/bosslike-ender-dragon-1.5.0-1.21.1-neoforge.jar"
+hash-format = "sha1"
+hash = "54b1622acbb1455b63216e633db1a9dd5d23dc46"
+
+[update.curseforge]
+project-id = 1697590
+file-id = 9203933

@@ -1,0 +1,14 @@
+name = "Lustratio Magica"
+author = "AnimaExInani"
+description = "A modpack of exploration, combat, and magic."
+pack-format = "packwiz:1.1.0"
+version = "0.1.0-alpha.1"
+
+[index]
+file = "index.toml"
+hash-format = "sha256"
+hash = "d05ffef8898cd7c2dd16ca87d98b525f6aad23c7e295a9618dddd91637e8ecad"
+
+[versions]
+minecraft = "1.21.1"
+neoforge = "21.1.265"

@@ -1,0 +1,12 @@
+name = "kubejs_curios_neoforge_1.21.1-1.0.4"
+filename = "kubejs_curios_neoforge_1.21.1-1.0.4.jar"
+side = "both"
+
+[download]
+url = "https://edge.forgecdn.net/files/6825/089/kubejs_curios_neoforge_1.21.1-1.0.4.jar"
+hash-format = "sha1"
+hash = "d76c4181e1436bc85f108c7191f1ed7ee374d318"
+
+[update.curseforge]
+project-id = 1255211
+file-id = 6825089

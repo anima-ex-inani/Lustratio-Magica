@@ -1,0 +1,13 @@
+## ProbeJS files
+# If you need them when writing KubeJS scripts, regenerate them in-game.
+**/jsconfig.json
+kubejs/config/client.json
+kubejs/config/common.json
+kubejs/config/probe-settings.json
+kubejs/config/web_server.json
+.probe
+.vscode/probejs.code-snippets
+.github/agents/kubejs-explore.agent.md
+.github/agents/kubejs-planner.agent.md
+.github/agents/kubejs-survey.agent.md
+kubejs/package.json

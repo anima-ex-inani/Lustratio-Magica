@@ -1,0 +1,12 @@
+name = "shieldnparry-1.2.A"
+filename = "shieldnparry-1.2.A.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/6rqDqhrb/versions/5t5cTCVi/shieldnparry-1.2.A.jar"
+hash-format = "sha512"
+hash = "7abcdccd552bbd9a61369193a9f9462159e70f6d70a0d2c1b9122b32f4fcfbcc3b7b8919f3af4c8b385ba4652757704e01f1064311b3d9b0010de6ad35cdcd23"
+
+[update.modrinth]
+mod-id = "6rqDqhrb"
+version = "5t5cTCVi"

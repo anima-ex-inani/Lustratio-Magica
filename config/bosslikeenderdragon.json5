@@ -1,0 +1,1176 @@
+// Bosslike Ender Dragon config
+// - Lines starting with // are comments explaining the setting below them.
+// - Times are in ticks: 20 ticks = 1 second.
+// - Damage is before multipliers (players, Ascension, stage, low health). 2 damage = 1 heart.
+// - Numbers outside a setting's range are changed to the nearest allowed value when loaded.
+// - Apply changes with /bosslike reload, or restart the server.
+{
+  // ==================== General ====================
+
+  // Don't change this. The mod uses it to reset this file when an update changes the defaults.
+  "configVersion": 22,
+
+  // Turns the whole overhaul on or off. false = the normal vanilla dragon fight.
+  // Default: true
+  "enabled": true,
+
+  // Writes what the dragon is doing (dives, attacks, stage changes) to the server log. Useful for bug reports.
+  // Default: false
+  "debugLogging": false,
+
+  // ==================== Player scaling ====================
+  // The dragon gets tougher the more players fight it.
+
+  // Players this many blocks or closer (sideways) to the centre of the End count as fighting. Creative and spectator players never count.
+  // Default: 160.0 | Range: 16 to 1024
+  "participantRadius": 160.0,
+
+  // Scaling stops growing past this many players.
+  // Default: 8 | Range: 1 to 100
+  "maxScaledPlayers": 8,
+
+  // true = the dragon stays as strong as the most players that fought it at once, so leaving mid-fight doesn't weaken it.
+  // false = it follows the current player count.
+  // Default: true
+  "scaleToPeakPlayers": true,
+
+  // Extra dragon health per extra player, as a fraction of its normal health. 0.6 = +60%: 200 HP solo, 320 with 2 players, 560 with 4.
+  // Default: 0.6 | Range: 0 to 10
+  "bonusHealthPerExtraPlayer": 0.25,
+
+  // Extra damage from every dragon attack per extra player. 0.15 = +15% per player.
+  // Default: 0.15 | Range: 0 to 10
+  "bonusDamagePerExtraPlayer": 0.1,
+
+  // ==================== Ascension ====================
+  // Every time the dragon is killed, the next respawned dragon is stronger (shown as stars on the boss bar).
+
+  // Turns Ascension on or off.
+  // Default: true
+  "ascensionEnabled": true,
+
+  // Highest Ascension level. Kills past this don't make the dragon any stronger.
+  // Default: 5 | Range: 0 to 100
+  "maxAscension": 5,
+
+  // Extra dragon health per Ascension level, as a fraction of its normal health. 0.25 = +25% per level.
+  // Default: 0.25 | Range: 0 to 10
+  "ascensionHealthBonusPerLevel": 0.25,
+
+  // Extra damage from every dragon attack per Ascension level. 0.1 = +10% per level.
+  // Default: 0.1 | Range: 0 to 10
+  "ascensionDamageBonusPerLevel": 0.1,
+
+  // Extra XP per Ascension level. 0.2 = +20% per level: 12000 XP at level 0, 14400 at level 1, 24000 at level 5 (with dragonXp 12000).
+  // Default: 0.2 | Range: 0 to 100
+  "ascensionXpBonusPerLevel": 0.2,
+
+  // ==================== Rewards ====================
+
+  // XP every dragon drops before bonuses. Vanilla drops 12000 for the first dragon in a world (about level 68 from 0) but only 500 for every respawned one. 0 = use vanilla's amounts.
+  // Default: 12000 | Range: 0 to 1000000
+  "dragonXp": 12000,
+
+  // Every fighter gets their own XP drop at their feet, this fraction of the normal amount. 1.0 = everyone gets the full amount.
+  // Default: 1.0 | Range: 0 to 10
+  "xpSharePerPlayer": 1.0,
+
+  // true = only fighters who helped get an XP drop: they hurt the dragon by at least xpMinDamageFraction of its health, or broke at least xpMinCrystals crystals on the pillars. Someone who only turns up for the death gets nothing.
+  // false = every fighter close enough when it dies gets a drop.
+  // Default: true
+  "xpRequiresContribution": true,
+
+  // With xpRequiresContribution: how much of the dragon's max health a player has to take off to earn XP. 0.02 = 2% (4 of a solo dragon's 200 HP, about 11 of 560 with 4 players). 0 = any damage at all.
+  // Default: 0.02 | Range: 0 to 1
+  "xpMinDamageFraction": 0.02,
+
+  // With xpRequiresContribution: pillar crystals a player has to break to earn XP even without hurting the dragon much. 0 = breaking crystals doesn't count.
+  // Default: 1 | Range: 0 to 10
+  "xpMinCrystals": 1,
+
+  // true = every dragon kill leaves a dragon egg on top of the exit portal, where vanilla puts the first one. Collect it before the next respawn: rebuilding the portal clears it.
+  // false = only the first dragon in a world drops the egg (vanilla).
+  // Default: true
+  "dragonEggEveryKill": true,
+
+  // Extra explosions, lightning and particles while the dragon dies.
+  // Default: true
+  "deathSpectacle": true,
+
+  // true = the beaten dragon is dragged back into the void: a dimensional rift tears open ahead of and above it, it thrashes while cracks of light run down its body, then it's pulled into the rift and swallowed, and the rift closes. The XP, exit portal and egg follow.
+  // false = vanilla's death, dissolving in place (plus the spectacle above).
+  // Default: true
+  "deathRift": true,
+
+  // true = the dragon goes into and comes out of rifts one body part at a time: going in, its head breaks apart first and its tail last; coming out (the respawn rift, Rift Ambush), its head forms first. The side of the rift it hasn't come through is wrapped in dark void cloud.
+  // false = it vanishes into and appears out of rifts all at once.
+  // Default: true
+  "riftBodyEffects": true,
+
+  // ==================== Stages ====================
+  // Stage 1 Guardian -> stage 2 Enraged -> stage 3 Desperate -> Final Stand. Health fractions: 0.6 = 60% health.
+
+  // Health fraction where stage 2 (Enraged) starts.
+  // Default: 0.6 | Range: 0.01 to 1
+  "enragedHealthThreshold": 0.7,
+
+  // Health fraction where stage 3 (Desperate) starts. Can't be above enragedHealthThreshold (the same value starts stage 3 straight after stage 2).
+  // Default: 0.25 | Range: 0.01 to 1
+  "desperateHealthThreshold": 0.3,
+
+  // How long the dragon hovers and roars between stages, in ticks (20 ticks = 1 second). It can't be hurt during this.
+  // Default: 60 | Range: 2 to 1200
+  "transitionTicks": 60,
+
+  // When a stage starts, players this many blocks or closer get pushed away from the dragon (no damage).
+  // Default: 24.0 | Range: 0 to 64
+  "transitionKnockbackRadius": 0.0,
+
+  // How hard that stage-change push is.
+  // Default: 2.2 | Range: 0 to 10
+  "transitionKnockbackStrength": 2.2,
+
+  // How hard that stage-change push throws players upward.
+  // Default: 0.5 | Range: 0 to 10
+  "transitionKnockbackUp": 0.5,
+
+  // true = as it changes stage the dragon goes into a rift, appears out of another one high over the podium and drops onto it, and a shockwave rolls out much further than any other attack reaches. It can be jumped over like the dive's wave, which matters because the dragon can't be hurt during the change.
+  // false = only the push above. Off by default: it is finished but has not been played enough to judge, so it is parked until it has been.
+  // Default: false
+  "transitionSlam": true,
+
+  // How far the stage-change shockwave travels, in blocks.
+  // Default: 42.0 | Range: 4 to 96
+  "transitionSlamRadius": 96.0,
+
+  // How long the dragon roars where it is before going into the rift, in ticks (20 = 1 second).
+  // Default: 12 | Range: 0 to 100
+  "transitionSlamWindUpTicks": 25,
+
+  // How high above the podium the rift it falls out of opens, in blocks. High enough to be worth looking up at.
+  // Default: 60.0 | Range: 8 to 160
+  "transitionSlamHeight": 60.0,
+
+  // How long that rift hangs open, with a ring marking the ground below it, before the dragon comes out, in ticks (20 = 1 second). This is the warning to get clear.
+  // Default: 25 | Range: 1 to 100
+  "transitionSlamWarningTicks": 40,
+
+  // How fast the dragon falls, in blocks per tick. It comes straight down on one heading without turning.
+  // Default: 4.0 | Range: 0.5 to 16
+  "transitionSlamDropSpeed": 3.0,
+
+  // How fast it travels, in blocks per tick.
+  // Default: 1.1 | Range: 0.1 to 4
+  "transitionSlamSpeed": 1.25,
+
+  // Its damage at the centre, before multipliers and the shockwave falloff. 2 damage = 1 heart.
+  // Default: 12.0 | Range: 0 to 1000
+  "transitionSlamDamage": 30.0,
+
+  // ==================== Damage and knockback ====================
+
+  // true = the overhaul's own attacks ignore armor (Protection enchantments still help), so full netherite isn't immune.
+  // false = armor reduces them normally. The dragon's vanilla attacks always use armor.
+  // Default: true
+  "specialAttacksBypassArmor": false,
+
+  // Extra damage from every dragon attack in stage 2 (Enraged). 0.4 = +40%.
+  // Default: 0.4 | Range: 0 to 10
+  "enragedDamageBonus": 0.2,
+
+  // Extra damage from every dragon attack in stage 3 (Desperate) and the Final Stand. 0.8 = +80%.
+  // Default: 0.8 | Range: 0 to 10
+  "desperateDamageBonus": 0.4,
+
+  // Extra damage that grows as the dragon loses health, reaching this much when it's nearly dead. 0.5 = up to +50%.
+  // Default: 0.5 | Range: 0 to 10
+  "lowHealthDamageBonus": 0.75,
+
+  // Scales all knockback from the overhaul's attacks. 1.0 = full strength. Knockback resistance (like netherite armor) also lowers it; see the next setting.
+  // Default: 0.75 | Range: 0 to 10
+  "knockbackMultiplier": 0.75,
+
+  // true = knockback resistance (like netherite armor) only lowers the sideways push, so armored players still get thrown into the air.
+  // false = it lowers the upward push too (in full netherite, most attacks then barely lift you).
+  // Default: true
+  "upwardKnockbackIgnoresResistance": false,
+
+  // The dragon's wings push nearby players every tick, but vanilla only applies that push the next time something hits them, all at once.
+  // true = the next knockback from the dragon adds the built-up wing push (up to the two caps below), so fighting near its wings gets you thrown higher and further.
+  // false = knockback ignores it.
+  // Default: true
+  "wingPushAddsToKnockback": false,
+
+  // Most sideways speed (blocks per tick) the wing push can build up. Uncapped, it flung players hundreds of blocks. 0 = no cap (vanilla, not recommended).
+  // Default: 0.8 | Range: 0 to 10
+  "wingKnockbackMaxSpeed": 5.0,
+
+  // Most upward speed (blocks per tick) the wing push can build up. 0.6 adds about 2.5 blocks of height to the next hit. Only used when wingKnockbackMaxSpeed is above 0.
+  // Default: 0.6 | Range: 0 to 10
+  "wingKnockbackMaxUpSpeed": 0.6,
+
+  // Highest upward speed (blocks per tick) any knockback from the dragon can give, after everything is added up. 2.6 = about 30 blocks up. The upward pushes above are multiplied by knockbackMultiplier first (3.0 x 0.75 = 2.25, about 24 blocks).
+  // Default: 2.6 | Range: 0 to 3.9
+  "maxKnockbackUpSpeed": 2.6,
+
+  // Explosion damage to the dragon while it's perched on the portal (beds, respawn anchors, crystals, TNT). 0.4 = 40% damage, 1.0 = full.
+  // Default: 0.4 | Range: 0 to 10
+  "perchedExplosionDamageMultiplier": 0.4,
+
+  // ==================== Flight and perching ====================
+
+  // Random extra height (blocks) added to each point the dragon flies to. Vanilla is 20. Lower keeps it in bow range.
+  // Default: 6.0 | Range: 0 to 64
+  "flightHeightVariance": 6.0,
+
+  // The dragon doesn't fly higher than this many blocks above the portal (except just over a pillar). 0 = no limit.
+  // Default: 30.0 | Range: 0 to 256
+  "maxAltitudeAbovePodium": 25.0,
+
+  // Each time the dragon finishes a flight path, it lands on the portal with a chance of 1 in (living crystals + this). Vanilla is 3. Lower = lands more often.
+  // Default: 2 | Range: 0 to 50
+  "landingRollBase": 2,
+
+  // If the dragon hasn't landed for this long, it heads for the portal. In ticks (20 ticks = 1 second). 0 = off.
+  // Default: 600 | Range: 0 to 72000
+  "maxTicksBetweenPerches": 600,
+
+  // Flight speed in stage 2 (Enraged). 1.0 = normal speed.
+  // Default: 1.0 | Range: 0.1 to 5
+  "enragedFlySpeedMultiplier": 1.0,
+
+  // Flight speed in stage 3 (Desperate). 1.15 = 15% faster.
+  // Default: 1.15 | Range: 0.1 to 5
+  "desperateFlySpeedMultiplier": 1.15,
+
+  // ==================== Dive bomb (all stages) ====================
+  // The dragon climbs up behind a player, marks their spot with a ring, and dives into it.
+
+  // Breaking a crystal makes the dragon dive-bomb whoever broke it (Crystal Rage).
+  // Default: true
+  "crystalRage": true,
+
+  // If the dragon is busy when a crystal breaks (perched, landing, on cooldown), it waits up to this long to do the Crystal Rage dive. In ticks (20 ticks = 1 second).
+  // Default: 400 | Range: 0 to 6000
+  "crystalRageQueueTicks": 400,
+
+  // Vanilla's charge attack (after landing with nobody close) becomes a dive bomb.
+  // Default: true
+  "vanillaChargeBecomesDive": true,
+
+  // How often the circling dragon rolls for a random dive bomb, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 1 to 6000
+  "diveRollIntervalTicks": 40,
+
+  // Chance per roll to dive-bomb a random player in stage 1. 0.25 = 25%.
+  // Default: 0.25 | Range: 0 to 1
+  "guardianDiveChance": 0.25,
+
+  // Chance per roll in stage 2.
+  // Default: 0.35 | Range: 0 to 1
+  "enragedDiveChance": 0.35,
+
+  // Chance per roll in stage 3.
+  // Default: 0.5 | Range: 0 to 1
+  "desperateDiveChance": 0.5,
+
+  // Wait after a dive ends before another can start, in ticks (20 ticks = 1 second). The /bosslike dive command ignores it.
+  // Default: 60 | Range: 0 to 6000
+  "diveCooldownTicks": 100,
+
+  // Before diving, the dragon climbs to this many blocks above the player...
+  // Default: 22.0 | Range: 4 to 64
+  "diveClimbHeight": 22.0,
+
+  // ...and this many blocks behind them (away from the dragon).
+  // Default: 20.0 | Range: 0 to 64
+  "diveClimbBackDistance": 25.0,
+
+  // Flight speed while climbing, in blocks per tick.
+  // Default: 1.0 | Range: 0.2 to 5
+  "diveClimbSpeed": 1.0,
+
+  // Longest the climb can take before it dives anyway, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 1 to 600
+  "diveMaxClimbTicks": 60,
+
+  // Dive speed in blocks per tick. The dragon's model tilts nose-down when it dives fast.
+  // Default: 1.4 | Range: 0.2 to 5
+  "diveSpeed": 2.0,
+
+  // Longest the dive can take before it hits anyway, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 1 to 600
+  "diveMaxTicks": 60,
+
+  // How fast the dragon can turn during dive bombs, Strafing Runs and Rift Ambushes, in degrees per tick. Vanilla clients bend the dragon's body sideways by how fast it turned over the last few ticks, and above about 8 its neck looks detached from its body during sharp turns.
+  // Default: 8.0 | Range: 1 to 180
+  "diveTurnSpeed": 4.0,
+
+  // After hitting, the dragon pulls back up for this long before flying normally, in ticks (20 ticks = 1 second).
+  // Default: 20 | Range: 0 to 200
+  "diveRecoverTicks": 20,
+
+  // Size of the marked ring and the impact blast, in blocks.
+  // Default: 4.0 | Range: 0 to 32
+  "diveImpactRadius": 2.75,
+
+  // Damage to players inside the ring when the dragon hits (before multipliers). 2 damage = 1 heart.
+  // Default: 14.0 | Range: 0 to 1000
+  "diveImpactDamage": 20.0,
+
+  // How hard the impact blast pushes players.
+  // Default: 2.0 | Range: 0 to 10
+  "diveImpactKnockback": 2.0,
+
+  // How hard the impact blast throws players upward. 2.4 = about 16 blocks up right at the centre, less further out.
+  // Default: 2.4 | Range: 0 to 10
+  "diveImpactKnockbackUp": 2.4,
+
+  // From stage 2, the impact leaves a breath cloud this many blocks wide (radius). 0 = none.
+  // Default: 3.0 | Range: 0 to 16
+  "diveImpactCloudRadius": 0.0,
+
+  // How long that cloud lasts, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 1 to 1200
+  "diveImpactCloudDurationTicks": 60,
+
+  // A purple shockwave ring spreads along the ground from the impact out to this many blocks. Jump over it to dodge. 0 = no shockwave.
+  // Default: 14.0 | Range: 0 to 64
+  "diveShockwaveRadius": 12.0,
+
+  // How fast the shockwave spreads, in blocks per tick.
+  // Default: 0.8 | Range: 0.1 to 5
+  "diveShockwaveSpeed": 0.8,
+
+  // Shockwave damage (before multipliers). It gets weaker the further it travels. 2 damage = 1 heart.
+  // Default: 12.0 | Range: 0 to 1000
+  "diveShockwaveDamage": 12.0,
+
+  // How much weaker the shockwave hits by the time it reaches its full size. 0.4 = 40% weaker at the edge.
+  // Default: 0.4 | Range: 0 to 1
+  "shockwaveDamageFalloff": 0.5,
+
+  // How close (blocks) a player's feet must be to the shockwave's edge to get hit. Bigger = harder to dodge.
+  // Default: 1.2 | Range: 0.2 to 5
+  "shockwaveHitWidth": 1.2,
+
+  // Players this many blocks or more above the ground dodge the shockwave (a normal jump is about 1.25).
+  // Default: 1.0 | Range: 0 to 5
+  "shockwaveJumpHeight": 0.8,
+
+  // How hard the shockwave pushes players outward.
+  // Default: 0.8 | Range: 0 to 10
+  "shockwaveKnockback": 0.8,
+
+  // How hard the shockwave pushes players upward.
+  // Default: 0.8 | Range: 0 to 10
+  "shockwaveKnockbackUp": 0.8,
+
+  // From stage 2, the dragon leaves breath clouds on the ground below it during the dive.
+  // Default: true
+  "chargeBreathTrail": false,
+
+  // Time between trail clouds, in ticks (20 ticks = 1 second).
+  // Default: 4 | Range: 1 to 100
+  "chargeBreathTrailIntervalTicks": 4,
+
+  // Size (radius) of each trail cloud, in blocks.
+  // Default: 2.0 | Range: 0.5 to 16
+  "chargeBreathTrailCloudRadius": 2.0,
+
+  // How long each trail cloud lasts, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 1 to 1200
+  "chargeBreathTrailCloudDurationTicks": 60,
+
+  // ==================== Strafing Run ====================
+  // Instead of some dive bombs, the dragon draws a purple line across the ground through a player, lines up behind it, then swoops low along it, knocking aside everyone in its path.
+
+  // Turns the Strafing Run on or off.
+  // Default: true
+  "strafingRun": true,
+
+  // First stage it can happen in: 1 = Guardian (all stages), 2 = Enraged, 3 = Desperate.
+  // Default: 1 | Range: 1 to 3
+  "strafingRunFromStage": 1,
+
+  // Chance that a random dive, or a dive the dragon starts after perching, is a Strafing Run instead. 0.5 = half of them. Crystal Rage and the dive command always dive.
+  // Default: 0.5 | Range: 0 to 1
+  "strafingRunShare": 0.5,
+
+  // Length of the run, in blocks (centred on the player it was aimed at).
+  // Default: 48.0 | Range: 16 to 96
+  "strafingRunLength": 48.0,
+
+  // How many blocks above the usual ground height along the line the dragon flies. Pillars and bumps along the way are ignored (it flies straight through them).
+  // Default: 2.0 | Range: 0 to 12
+  "strafingRunHeight": 0.5,
+
+  // Flight speed while lining up, in blocks per tick.
+  // Default: 1.2 | Range: 0.3 to 3
+  "strafingRunApproachSpeed": 1.2,
+
+  // The warning line shows at least this long before the swoop, in ticks (20 ticks = 1 second).
+  // Default: 30 | Range: 0 to 200
+  "strafingRunMinWarningTicks": 50,
+
+  // If the dragon still isn't lined up after this long, it swoops anyway, in ticks.
+  // Default: 100 | Range: 20 to 600
+  "strafingRunMaxApproachTicks": 100,
+
+  // Swoop speed, in blocks per tick.
+  // Default: 1.6 | Range: 0.3 to 3
+  "strafingRunSpeed": 2.5,
+
+  // Longest the swoop can take before it pulls up, in ticks.
+  // Default: 60 | Range: 10 to 400
+  "strafingRunMaxTicks": 60,
+
+  // Players this many blocks or closer (sideways) to the dragon's path get hit, once per run.
+  // Default: 4.5 | Range: 1 to 12
+  "strafingRunHitWidth": 5.0,
+
+  // Damage (before multipliers). 2 damage = 1 heart.
+  // Default: 12.0 | Range: 0 to 1000
+  "strafingRunDamage": 15.0,
+
+  // How hard it knocks players out to the side.
+  // Default: 2.0 | Range: 0 to 10
+  "strafingRunKnockback": 4.0,
+
+  // How hard it knocks players upward. 2.4 = about 16 blocks up.
+  // Default: 2.4 | Range: 0 to 10
+  "strafingRunKnockbackUp": 0.5,
+
+  // From stage 2, the swoop leaves breath clouds along its path (same size and duration as the dive trail).
+  // Default: true
+  "strafingRunBreathTrail": true,
+
+  // ==================== Rift Ambush ====================
+  // Some dive bombs at players far from the dragon become a Rift Ambush: the dragon flies into a rift and vanishes, a second rift tears open beside and above that player, and the dragon bursts out of it diving at them. The second rift opening is the warning to move.
+
+  // Turns the Rift Ambush on or off.
+  // Default: true
+  "riftAmbush": true,
+
+  // First stage it can happen in (1 Guardian, 2 Enraged, 3 Desperate).
+  // Default: 2 | Range: 1 to 3
+  "riftAmbushFromStage": 3,
+
+  // Share of random dive rolls that become a Rift Ambush, if a fighter is at least riftAmbushMinDistance from the dragon (one of those is picked). 0.2 = 20%.
+  // Default: 0.2 | Range: 0 to 1
+  "riftAmbushShare": 0.2,
+
+  // How long the second rift takes to open before the dragon comes out, in ticks (20 ticks = 1 second). This is the players' warning.
+  // Default: 40 | Range: 5 to 200
+  "riftAmbushWarningTicks": 60,
+
+  // How far to the side of the player the second rift opens, in blocks.
+  // Default: 16.0 | Range: 4 to 40
+  "riftAmbushDistance": 30.0,
+
+  // How high above the player the second rift opens, in blocks.
+  // Default: 12.0 | Range: 2 to 40
+  "riftAmbushHeight": 25.0,
+
+  // Only players at least this far from the dragon (horizontally, in blocks) get a Rift Ambush. Closer players get a normal dive bomb.
+  // Default: 40.0 | Range: 0 to 256
+  "riftAmbushMinDistance": 40.0,
+
+  // true = a player at least riftAmbushMinDistance away who breaks a crystal gets a Rift Ambush instead of the Crystal Rage dive (in any stage).
+  // Default: true
+  "riftAmbushOnCrystalRage": true,
+
+  // After bursting out of the rift, the dragon glides toward its target this long before diving, while a ring marks the target. In ticks (20 ticks = 1 second). 0 = it dives straight away.
+  // Default: 15 | Range: 0 to 100
+  "riftAmbushEmergeTicks": 0,
+
+  // The Rift Ambush dive keeps following its target until the dragon's head is this many blocks from where it will hit, then commits. 0 = it aims where the target stood when the dive started.
+  // Default: 12.0 | Range: 0 to 64
+  "riftAmbushDiveLockDistance": 25.0,
+
+  // ==================== Void Pull ====================
+  // Some dive rolls become a Void Pull: the dragon hovers over a player, a swirling vortex forms on the ground and drags everyone in it toward a breath cloud at its centre, then collapses in a blast. Sprint outward to escape.
+
+  // Turns the Void Pull on or off.
+  // Default: true
+  "voidPull": true,
+
+  // First stage it can happen in (1 Guardian, 2 Enraged, 3 Desperate).
+  // Default: 2 | Range: 1 to 3
+  "voidPullFromStage": 2,
+
+  // Share of random dive rolls that become a Void Pull. 0.15 = 15%. Rolled after the Rift Ambush share.
+  // Default: 0.15 | Range: 0 to 1
+  "voidPullShare": 0.2,
+
+  // How long the vortex forms before it starts pulling, in ticks.
+  // Default: 30 | Range: 0 to 200
+  "voidPullWarningTicks": 30,
+
+  // How long it pulls, in ticks.
+  // Default: 80 | Range: 10 to 400
+  "voidPullTicks": 100,
+
+  // Radius of the vortex, in blocks.
+  // Default: 12.0 | Range: 3 to 32
+  "voidPullRadius": 14.0,
+
+  // How fast players are dragged in, in blocks per tick. Sprinting is about 0.28, so 0.16 can be escaped by sprinting outward.
+  // Default: 0.16 | Range: 0 to 2
+  "voidPullStrength": 0.5,
+
+  // How high above the vortex the dragon hovers, in blocks.
+  // Default: 14.0 | Range: 4 to 40
+  "voidPullHoverHeight": 14.0,
+
+  // Radius of the breath cloud at the vortex's centre.
+  // Default: 3.0 | Range: 0 to 10
+  "voidPullCloudRadius": 0.0,
+
+  // Radius of the blast when the vortex collapses.
+  // Default: 5.0 | Range: 0 to 20
+  "voidPullBurstRadius": 10.0,
+
+  // Damage from that blast before scaling.
+  // Default: 8.0 | Range: 0 to 100
+  "voidPullBurstDamage": 20.0,
+
+  // How hard the blast throws players outward.
+  // Default: 1.8 | Range: 0 to 10
+  "voidPullBurstKnockback": 2.0,
+
+  // How hard the blast throws players upward.
+  // Default: 1.2 | Range: 0 to 10
+  "voidPullBurstKnockbackUp": 1.0,
+
+  // ==================== Breath bombs (all stages) ====================
+  // A ring marks a spot near each player, then a dragon fireball drops onto it. Rare while the dragon is healthy, frequent when it's weak.
+
+  // Turns breath bombs on or off.
+  // Default: true
+  "breathBombardment": true,
+
+  // Average time between bombs on each player while the dragon has full health, in ticks (20 ticks = 1 second).
+  // Default: 240 | Range: 20 to 12000
+  "bombIntervalAtFullHealthTicks": 200,
+
+  // Average time between bombs when the dragon is nearly dead. It shifts smoothly between the two as the dragon loses health.
+  // Default: 70 | Range: 20 to 12000
+  "bombIntervalAtLowHealthTicks": 100,
+
+  // How random the timing is. 0.4 = each wait is 60% to 140% of the average. 0 = perfectly regular.
+  // Default: 0.4 | Range: 0 to 0.95
+  "bombIntervalRandomness": 0.4,
+
+  // How long the warning ring shows before the bomb drops, in ticks (20 ticks = 1 second).
+  // Default: 14 | Range: 1 to 200
+  "bombWarningTicks": 20,
+
+  // How high above the ground bombs start, in blocks.
+  // Default: 24.0 | Range: 4 to 128
+  "bombDropHeight": 30.0,
+
+  // Fall speed in blocks per tick. Keep it near 1.9: much faster looks jumpy for players.
+  // Default: 1.9 | Range: 0.1 to 4
+  "bombFallSpeed": 2.0,
+
+  // How much bombs aim ahead of a moving player. 0 = at where they stand, 1 = where they'll be if they keep moving.
+  // Default: 0.7 | Range: 0 to 2
+  "bombLeadFactor": 0.8,
+
+  // Most blocks a bomb aims ahead of a player.
+  // Default: 6.0 | Range: 0 to 32
+  "bombMaxLead": 10.0,
+
+  // Random miss distance from the aimed spot, up to this many blocks.
+  // Default: 1.5 | Range: 0 to 16
+  "bombAimSpread": 2.0,
+
+  // Players this many blocks or closer to the impact take damage.
+  // Default: 3.5 | Range: 0 to 16
+  "bombImpactRadius": 3.5,
+
+  // Impact damage right at the centre (before multipliers). 2 damage = 1 heart.
+  // Default: 10.0 | Range: 0 to 1000
+  "bombImpactDamage": 10.0,
+
+  // How much weaker the hit is at the edge of the blast. 0.5 = half damage at the edge.
+  // Default: 0.5 | Range: 0 to 1
+  "bombDamageFalloff": 0.5,
+
+  // How hard the blast pushes players outward.
+  // Default: 0.7 | Range: 0 to 10
+  "bombKnockback": 0.2,
+
+  // How hard the blast pushes players upward.
+  // Default: 0.6 | Range: 0 to 10
+  "bombKnockbackUp": 0.1,
+
+  // Most bombs (warning rings plus falling bombs) at once, across all players.
+  // Default: 96 | Range: 0 to 256
+  "maxActiveBombs": 96,
+
+  // How long a bomb's breath cloud lasts, in ticks (20 ticks = 1 second). Vanilla fireball clouds last 600.
+  // Default: 60 | Range: 20 to 1200
+  "bombCloudDurationTicks": 200,
+
+  // Size (radius) of the bomb's breath cloud when it appears, in blocks.
+  // Default: 2.5 | Range: 0 to 16
+  "bombCloudStartRadius": 3.0,
+
+  // Size (radius) the cloud grows to by the time it's gone, in blocks.
+  // Default: 3.5 | Range: 0 to 16
+  "bombCloudMaxRadius": 4.0,
+
+  // ==================== Breath rain (all stages, while perched) ====================
+  // While the dragon is perched, breath bombs rain down all around it at random, but never in a circle right underneath: the safest place in the fight is under the dragon, where it can also slam you. Arrows do nothing to a perched dragon, so this is what makes the perch worth engaging with instead of waiting out.
+
+  // Turns the breath rain on or off. While it is on, the targeted breath bombs above pause whenever the dragon is perched. Off by default: it is finished but has not been played enough to judge, so it is parked until it has been.
+  // Default: false
+  "perchedBreathRain": true,
+
+  // Radius of the safe circle under the dragon, in blocks. No rain lands inside it. Matches the Ground Pound's radius by default, so the safe spot is also slam range.
+  // Default: 7.0 | Range: 0 to 32
+  "perchedRainSafeRadius": 8.0,
+
+  // How far out the rain reaches from the dragon, in blocks. The pillars stand 42 blocks out, so the default reaches past them.
+  // Default: 50.0 | Range: 4 to 96
+  "perchedRainOuterRadius": 50.0,
+
+  // Bombs per second in stage 1.
+  // Default: 8.0 | Range: 0 to 20
+  "perchedRainBombsPerSecond": 6.0,
+
+  // Bombs per second in stage 3 (stage 2 sits in between).
+  // Default: 18.0 | Range: 0 to 20
+  "perchedRainBombsPerSecondDesperate": 15.0,
+
+  // Damage a rain bomb does at the centre of its impact (before multipliers). Lower than a targeted bomb because there are many. 2 damage = 1 heart.
+  // Default: 6.0 | Range: 0 to 1000
+  "perchedRainDamage": 7.5,
+
+  // How long a rain bomb's breath cloud lasts, in ticks. Short on purpose: at this many bombs, longer clouds turn the whole arena into breath.
+  // Default: 20 | Range: 0 to 600
+  "perchedRainCloudDurationTicks": 80,
+
+  // Draws the edge of the safe circle on the ground so players can see where the rain stops.
+  // Default: true
+  "perchedRainShowSafeRing": true,
+
+  // ==================== Perched attacks ====================
+  // The Ground Pound, Wing Buffet and Tail Swipe below take turns: after one ends, none of them starts until a shared cooldown runs out,
+  // so they don't run into each other. Each still has its own timer on top of that.
+
+  // Wait after any perched attack before the next one can start, in ticks (20 ticks = 1 second). 0 = no shared wait.
+  // Default: 60 | Range: 0 to 600
+  "perchAttackCooldownTicks": 40,
+
+  // ==================== Ground Pound (all stages, while perched) ====================
+  // Stand under the perched dragon too long and it rears up and slams down.
+
+  // Turns the Ground Pound on or off.
+  // Default: true
+  "groundPound": true,
+
+  // Players this many blocks or closer (sideways) to the dragon, and not above it, count as underneath.
+  // Default: 7.0 | Range: 1 to 32
+  "groundPoundRadius": 8.0,
+
+  // How long someone has to stay underneath before it rears up, in ticks (20 ticks = 1 second).
+  // Default: 20 | Range: 1 to 1200
+  "groundPoundTriggerTicks": 20,
+
+  // Wait between pounds, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 0 to 6000
+  "groundPoundCooldownTicks": 100,
+
+  // How long the dragon takes to rear up, in ticks. This is players' warning to get out.
+  // Default: 10 | Range: 1 to 100
+  "groundPoundRiseTicks": 35,
+
+  // How long it hangs at the top before slamming, in ticks.
+  // Default: 4 | Range: 0 to 100
+  "groundPoundHoldTicks": 5,
+
+  // How many blocks it rises.
+  // Default: 2.5 | Range: 0 to 10
+  "groundPoundRiseHeight": 7.5,
+
+  // Slam damage (before multipliers). 2 damage = 1 heart.
+  // Default: 14.0 | Range: 0 to 1000
+  "groundPoundDamage": 35.0,
+
+  // How hard the slam throws players outward.
+  // Default: 1.4 | Range: 0 to 10
+  "groundPoundKnockback": 2.0,
+
+  // How hard the slam throws players upward. 3.0 = about 24 blocks up (watch out for fall damage).
+  // Default: 3.0 | Range: 0 to 10
+  "groundPoundKnockbackUp": 1.5,
+
+  // Blocks above a player's head that count as a ceiling. Under one, the launch has nowhere to go, so the slam shoves them outward instead (see the two settings below). 0 turns that off, which lets players tank the slam by standing under a block.
+  // Default: 4 | Range: 0 to 16
+  "groundPoundCeilingCheck": 4,
+
+  // How hard the slam shoves players outward when a ceiling blocks the launch. Higher than the normal push on purpose: it has to clear them out of melee range.
+  // Default: 2.4 | Range: 0 to 10
+  "groundPoundBlockedKnockback": 2.8,
+
+  // How hard that shove lifts them. Small, so they slide out rather than fly.
+  // Default: 0.45 | Range: 0 to 10
+  "groundPoundBlockedKnockbackUp": 0.45,
+
+  // Size (radius) of the breath cloud the slam leaves under the dragon in stage 1, in blocks. 0 = none.
+  // Default: 3.0 | Range: 0 to 16
+  "groundPoundCloudRadius": 0.0,
+
+  // Size (radius) of that cloud from stage 2 on.
+  // Default: 4.0 | Range: 0 to 16
+  "groundPoundEnragedCloudRadius": 0.0,
+
+  // How long the slam's cloud lasts, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 1 to 1200
+  "groundPoundCloudDurationTicks": 60,
+
+  // ==================== Wing Buffet (stage 2+, while perched) ====================
+  // The dragon flaps hard every few seconds, hitting and pushing away everyone close.
+
+  // Turns the Wing Buffet on or off.
+  // Default: true
+  "wingBuffet": true,
+
+  // Time between buffets, in ticks (20 ticks = 1 second).
+  // Default: 100 | Range: 2 to 6000
+  "wingBuffetIntervalTicks": 80,
+
+  // A cloud ring and flap sound warn this long before each buffet, in ticks. Must be less than the interval.
+  // Default: 20 | Range: 0 to 6000
+  "wingBuffetWarningTicks": 20,
+
+  // Players this many blocks or closer get hit.
+  // Default: 10.0 | Range: 0 to 32
+  "wingBuffetRadius": 10.0,
+
+  // Buffet damage (before multipliers). 2 damage = 1 heart.
+  // Default: 10.0 | Range: 0 to 1000
+  "wingBuffetDamage": 10.0,
+
+  // How hard the buffet pushes players away.
+  // Default: 1.8 | Range: 0 to 10
+  "wingBuffetKnockback": 2.0,
+
+  // How hard the buffet throws players upward. 1.8 = about 10 blocks up right next to the dragon, less further out.
+  // Default: 1.8 | Range: 0 to 10
+  "wingBuffetKnockbackUp": 1.0,
+
+  // ==================== Tail Swipe (stage 2+, while perched) ====================
+  // The dragon coils, then spins around so its tail sweeps a full circle, hitting everyone in reach once.
+  // Players close under the dragon get the Ground Pound instead; players further out set off the swipe.
+
+  // Turns the Tail Swipe on or off.
+  // Default: true
+  "tailSwipe": true,
+
+  // Wait between swipes, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 0 to 6000
+  "tailSwipeCooldownTicks": 100,
+
+  // How long the dragon coils before spinning, in ticks. This is players' warning.
+  // Default: 12 | Range: 1 to 100
+  "tailSwipeWarningTicks": 20,
+
+  // How far the tail reaches, in blocks. Players this close (but further than groundPoundRadius) set off a swipe, and the sweep hits everyone this close.
+  // Default: 14.0 | Range: 1 to 32
+  "tailSwipeRange": 14.0,
+
+  // Players only set off a swipe when they're more than this many degrees away from where the dragon's head points. 0 = any direction, 72 = beside or behind, 120 = only behind. The sweep itself still covers the spin angle.
+  // Default: 0.0 | Range: 0 to 179
+  "tailSwipeTriggerAngle": 0.0,
+
+  // Swipe damage (before multipliers). 2 damage = 1 heart.
+  // Default: 12.0 | Range: 0 to 1000
+  "tailSwipeDamage": 20.0,
+
+  // How far the body turns the other way while coiling, in degrees.
+  // Default: 30.0 | Range: 0 to 90
+  "tailSwipeCoilAngle": 30.0,
+
+  // How far the dragon spins, in degrees. 360 = full circle (hits all around). Less = a partial sweep toward the nearest player.
+  // Default: 360.0 | Range: 30 to 720
+  "tailSwipeSpinAngle": 360.0,
+
+  // Spin speed in degrees per tick. Above 12 the tail looks broken for players, so it's capped there.
+  // Default: 12.0 | Range: 2 to 12
+  "tailSwipeSpinSpeed": 12.0,
+
+  // How wide the tail's sweep is, in blocks. Bigger = harder to slip past it.
+  // Default: 2.5 | Range: 0.5 to 10
+  "tailSwipeHitWidth": 2.5,
+
+  // How hard the tail knocks players away.
+  // Default: 2.2 | Range: 0 to 10
+  "tailSwipeKnockback": 3.2,
+
+  // How hard the tail knocks players upward. 2.7 = about 20 blocks up.
+  // Default: 2.7 | Range: 0 to 10
+  "tailSwipeKnockbackUp": 1.5,
+
+  // ==================== Breath Sweep (stage 2+, while perched) ====================
+  // The perched dragon swings its head side to side while breathing fire, leaving a line of breath clouds.
+
+  // Turns the Breath Sweep on or off.
+  // Default: true
+  "breathSweep": true,
+
+  // How far it turns to each side, in degrees.
+  // Default: 55.0 | Range: 0 to 180
+  "breathSweepAngle": 60.0,
+
+  // How long one full left-right sweep takes, in ticks (20 ticks = 1 second). Vanilla's breath attack lasts 200 ticks.
+  // Default: 120 | Range: 1 to 190
+  "breathSweepDurationTicks": 120,
+
+  // Time between clouds along the sweep, in ticks.
+  // Default: 6 | Range: 1 to 100
+  "breathSweepCloudIntervalTicks": 6,
+
+  // Size (radius) of each sweep cloud, in blocks.
+  // Default: 2.5 | Range: 0.5 to 16
+  "breathSweepCloudRadius": 2.5,
+
+  // How long each sweep cloud lasts, in ticks (20 ticks = 1 second).
+  // Default: 80 | Range: 1 to 1200
+  "breathSweepCloudDurationTicks": 160,
+
+  // ==================== Strafe fireballs ====================
+  // The fireballs the flying dragon shoots at players.
+
+  // From stage 2, each shot becomes a fan of this many fireballs. 1 = a single fireball (vanilla).
+  // Default: 3 | Range: 1 to 15
+  "enragedFireballSpread": 3,
+
+  // Angle between fireballs in the fan, in degrees.
+  // Default: 12.0 | Range: 0 to 45
+  "enragedFireballSpreadAngle": 12.0,
+
+  // With more than one player, each shot also fires at other players: 1 extra per 2 extra players in stage 1, 1 per extra player from stage 2. This is the most extra targets per shot.
+  // Default: 3 | Range: 0 to 16
+  "maxExtraFireballTargets": 3,
+
+  // Only players this many blocks or closer to the dragon can be extra targets.
+  // Default: 96.0 | Range: 0 to 256
+  "extraFireballTargetRange": 96.0,
+
+  // ==================== Crystal Shield (all stages) ====================
+  // While End crystals are alive on the pillars, the dragon takes less damage. Hits show a shield sparkle and tell you how much was blocked.
+
+  // Turns the Crystal Shield on or off.
+  // Default: true
+  "crystalShield": true,
+
+  // Damage blocked per living pillar crystal. 0.08 = 8% per crystal.
+  // Default: 0.08 | Range: 0 to 1
+  "crystalShieldReductionPerCrystal": 0.15,
+
+  // Most damage the shield can block. 0.4 = 40% (reached with 5 or more crystals at the default).
+  // Default: 0.4 | Range: 0 to 0.95
+  "crystalShieldMaxReduction": 0.8,
+
+  // ==================== Stage 3: Desperate ====================
+  // Crystals come back on the pillars when stage 3 starts, so groups have to split up to stop the healing.
+
+  // Crystals that come back when stage 3 starts, with 1 player.
+  // Default: 2 | Range: 0 to 10
+  "rebornCrystalsBase": 2,
+
+  // Extra crystals per extra player. 1.0 = 1 more per player, 0.5 = 1 more per 2 players.
+  // Default: 1.0 | Range: 0 to 10
+  "rebornCrystalsPerExtraPlayer": 1.0,
+
+  // Most crystals that come back. There are only 10 pillars.
+  // Default: 8 | Range: 0 to 10
+  "maxRebornCrystals": 5,
+
+  // ==================== Final Stand ====================
+  // At very low health the dragon hovers over the portal and the pillar crystals heal it. Break them before it recovers.
+
+  // Health fraction where the Final Stand starts. Can't be above desperateHealthThreshold. 0 = no Final Stand.
+  // Default: 0.1 | Range: 0 to 1
+  "finalStandHealthThreshold": 0.1,
+
+  // Time limit: if the crystals aren't all broken by then, the dragon recovers, in ticks (20 ticks = 1 second). Warded crystals add crystalWardFinalStandExtraTicks each. The boss bar counts down.
+  // Default: 600 | Range: 20 to 72000
+  "finalStandMaxTicks": 600,
+
+  // How many blocks above the portal the dragon hovers.
+  // Default: 22 | Range: 5 to 64
+  "finalStandHoverHeight": 22,
+
+  // Crystals on the pillars during the Final Stand with 1 player (missing ones are added).
+  // Default: 2 | Range: 0 to 10
+  "finalStandCrystalsBase": 2,
+
+  // Extra crystals per extra player.
+  // Default: 1.0 | Range: 0 to 10
+  "finalStandCrystalsPerExtraPlayer": 0.5,
+
+  // Most crystals during the Final Stand. There are only 10 pillars.
+  // Default: 8 | Range: 0 to 10
+  "finalStandMaxCrystals": 6,
+
+  // Healing per second for each crystal, as a fraction of max health. 0.01 = 1% per crystal per second. It can't heal above desperateHealthThreshold.
+  // Default: 0.01 | Range: 0 to 1
+  "finalStandHealPerCrystalPerSecond": 0.0,
+
+  // true = during the Final Stand the dragon can't be hurt at all until every crystal is broken (hits bounce off and tell you to break the crystals).
+  // false = it can still be damaged, so strong weapons can kill it before the crystals matter.
+  // Default: true
+  "finalStandCrystalsProtectDragon": true,
+
+  // If time runs out, the dragon recovers to desperateHealthThreshold and the Final Stand comes back the next time its health drops to finalStandHealthThreshold.
+  // This is how many times it can come back. -1 = every time, 0 = only one Final Stand per fight.
+  // Default: -1 | Range: -1 to 1000
+  "finalStandMaxRepeats": 2,
+
+  // true = breaking every crystal undoes the Final Stand's healing: the dragon drops back to finalStandHealthThreshold, so you can finish it off.
+  // false = it keeps whatever it healed (with fast healing that's often back up to desperateHealthThreshold).
+  // Default: true
+  "finalStandSuccessUndoesHealing": false,
+
+  // ==================== Crystal cages and respawning ====================
+
+  // true = vanilla iron bar cages around the crystals on two of the pillars.
+  // false = no cages: they aren't built when the End generates or when the dragon is respawned, and cages already in a world are removed when the dragon fight starts.
+  // Default: false
+  "crystalCages": false,
+
+  // true = the four crystals placed on the exit portal to respawn the dragon can't be destroyed until the dragon has appeared (in vanilla, breaking one cancels the respawn). /kill still removes them.
+  // false = vanilla behavior.
+  // Default: true
+  "protectRespawnCrystals": true,
+
+  // true = when a crystal on a pillar is destroyed, the pillar crumbles to the ground with it. The respawn animation rebuilds the pillars, and a crystal the dragon brings back mid-fight grows its pillar back.
+  // false = pillars stay.
+  // Default: true
+  "crystalsDestroyPillars": true,
+
+  // true = pillars get a new look: crying obsidian veins, a wider base and narrower top, purpur bands, an end stone brick rim, and a crown of obsidian points and end rods around the crystal. Applied whenever a pillar is built or rebuilt; /bosslike pillars rebuilds them all now.
+  // false = plain vanilla obsidian pillars.
+  // Default: true
+  "styledPillars": true,
+
+  // true = a staircase of purpur stairs spirals up the outside of every pillar, so players can climb to a crystal without pearls or blocks. The dragon can break purpur, so strafing runs chew gaps into a staircase as the fight goes on; rebuilding the pillar restores it.
+  // false = no stairs, climb it yourself.
+  // Default: true
+  "pillarStairs": true,
+
+  // true = every time the dragon is respawned (and at a new End's first summoning), the pillars come back in a new layout: the ten pillar heights and thicknesses are shuffled between the pillars and each height varies by up to 3 blocks, so no two fights have the same pillars. The pillars stay in the same spots. Saved with the world.
+  // false = the same layout every time (vanilla, from the world seed).
+  // Default: true
+  "randomPillarLayout": true,
+
+  // true = a crumbled pillar leaves a short broken stump, crying obsidian splashed over the ground around it, and scattered rubble.
+  // false = nothing is left.
+  // Default: true
+  "pillarCraters": true,
+
+  // true = the exit portal becomes a summoning altar: a stepped dais of end stone bricks and purpur with stairs, a rune circle inlaid around the portal, markers at the four spots where respawn crystals go, and end rods instead of torches. Built whenever the portal is (re)built.
+  // false = the vanilla portal.
+  // Default: true
+  "decoratedExitPortal": true,
+
+  // The exit portal is placed so the dais's lowest step stands this many blocks above the average ground around the altar. The land around the altar is raised or lowered to its base and eased back into the island further out.
+  // Default: 1 | Range: 0 to 6
+  "exitPortalRaise": 1,
+
+  // true = an existing exit portal that sits too low (made before this mod, or by an older version) is moved up to that height, along with the dragon egg, the next time a player is at the fight.
+  // false = existing portals stay where they are.
+  // Default: true
+  "raiseExistingPortal": true,
+
+  // How long a pillar takes to crumble, in ticks (20 ticks = 1 second).
+  // Default: 20 | Range: 1 to 200
+  "pillarCollapseTicks": 80,
+
+  // How long a pillar takes to grow back when the dragon brings a crystal back mid-fight, in ticks.
+  // Default: 30 | Range: 1 to 200
+  "pillarRebuildTicks": 30,
+
+  // true = a pillar growing back pushes players standing where it rises out of the way (and moves anyone it would still trap to the ground next to it), and a pillar the dragon brings back mid-fight rumbles with a ring on the ground first.
+  // false = players standing there get built into the pillar.
+  // Default: true
+  "pillarShovesPlayers": true,
+
+  // true = when a pillar is rebuilt (respawn, mid-fight, /bosslike pillars), holes in the ground around it are filled back in with end stone and the rubble and crying obsidian its collapse left are cleaned up.
+  // false = the ground stays as it is.
+  // Default: true
+  "pillarRepairsGround": true,
+
+  // How long that rumble and ring warn before a pillar grows back mid-fight, in ticks (20 ticks = 1 second).
+  // Default: 40 | Range: 0 to 200
+  "pillarRiseWarningTicks": 40,
+
+  // ==================== Respawn animation ====================
+  // Extra effects while the dragon is being respawned with four crystals on the exit portal (about 30 seconds). The chat messages are in the "Chat messages" section.
+
+  // Shows a boss bar that fills up while the dragon is being respawned.
+  // Default: true
+  "respawnBossBar": true,
+
+  // Name of that boss bar. & colour codes work. {stars} = the new dragon's Ascension stars (empty at level 0).
+  // Default: "&dThe Ender Dragon awakens{stars}"
+  "respawnBossBarName": "&dEnder Dragon {stars}",
+
+  // true = each pillar sinks into the ground when the beam reaches it, then rises back up block by block, with a lightning flash when its crystal appears.
+  // false = vanilla (the top of the pillar blows up and it's rebuilt at once).
+  // Default: true
+  "respawnRisingPillars": true,
+
+  // true = streams of portal particles flow from the pillars into the exit portal, and the four crystals on the portal slowly float up while the dragon is summoned.
+  // false = vanilla.
+  // Default: true
+  "respawnGatheringEnergy": true,
+
+  // true = a roar when the respawn starts, lightning striking the pillars and a moment of Darkness while the dragon is summoned, then it bursts up out of the exit portal with a ring of lightning and explosions that pushes nearby players back (no damage).
+  // false = the dragon just appears high above the island like in vanilla.
+  // Default: true
+  "respawnDramaticEffects": true,
+
+  // true = while the dragon is summoned, a tear in the air opens high over the exit portal (glowing purple edges, a dark centre, sparks and portal particles) and the dragon comes out of it (head first with riftBodyEffects); the tear then closes. Only vanilla particles and sounds.
+  // false = the dragon appears at the portal.
+  // Default: true
+  "respawnRift": true,
+
+  // true = the first dragon in a new End isn't there when you arrive: when a player comes close, "The void stirs..." and it's summoned with the respawn animation (four crystals appear on the exit portal).
+  // Only affects Ends where the first dragon hasn't appeared yet. false = vanilla.
+  // Default: true
+  "firstDragonSummoning": true,
+
+  // The first dragon's summoning starts when a player is this many blocks or closer (sideways) to the centre of the End. The End spawn platform is about 100 blocks out.
+  // Default: 72.0 | Range: 8 to 192
+  "firstDragonTriggerRadius": 16.0,
+
+  // true = with firstDragonSummoning on, a newly generated End has no pillars or crystals: they rise during the first dragon's summoning.
+  // Only affects End islands generated after this is set. false = the pillars generate normally.
+  // Default: true
+  "newEndWithoutPillars": true,
+
+  // It also starts after players have been near the End island this long, even if nobody came close, in ticks (20 ticks = 1 second). 0 = only when someone comes close.
+  // Default: 1200 | Range: 0 to 72000
+  "firstDragonMaxWaitTicks": 6000,
+
+  // Time between the "void stirs" message and the crystals appearing, in ticks.
+  // Default: 100 | Range: 0 to 1200
+  "firstDragonWarningTicks": 100,
+
+  // ==================== Crystal Wards ====================
+  // Crystals the dragon brings back (stage 3 and the Final Stand) are warded: they can't be damaged until a player stands in the glowing ring at the base of their pillar long enough.
+  // The ring turns green as it charges; more players in the ring charge it faster (up to 3x), and it drains if everyone leaves.
+
+  // Turns Crystal Wards on or off.
+  // Default: true
+  "crystalWards": true,
+
+  // How long one player has to stand in the ring to break a ward, in ticks (20 ticks = 1 second).
+  // Default: 60 | Range: 5 to 1200
+  "crystalWardBreakTicks": 90,
+
+  // The Final Stand lasts this much longer for each warded crystal it starts with, in ticks, so there's time to break the ward and then the crystal.
+  // Default: 400 | Range: 0 to 2400
+  "crystalWardFinalStandExtraTicks": 300,
+
+  // ==================== Boss bar ====================
+  // Text shown after the dragon's name and stars on its boss bar, for each part of the fight. The dragon's name itself is translated by each player's game.
+  // Colour codes work like in the chat messages below. Leave one empty ("") to show just the name.
+
+  // During stage 1 (Guardian).
+  // Default: ""
+  "bossBarGuardian": "",
+
+  // During stage 2 (Enraged).
+  // Default: "&5 - Enraged"
+  "bossBarEnraged": "&5 - Enraged",
+
+  // During stage 3 (Desperate).
+  // Default: "&4 - Desperate"
+  "bossBarDesperate": "&4 - Desperate",
+
+  // During the Final Stand. {seconds} = seconds left before the dragon recovers.
+  // Default: "&4 - Final Stand ({seconds}s)"
+  "bossBarFinalStand": "&4 - Final Stand ({seconds}s)",
+
+  // After the Final Stand is won, while the dragon can be finished off.
+  // Default: "&4 - Vulnerable"
+  "bossBarVulnerable": "&4 - Vulnerable",
+
+  // true = the boss bar shows only the dragon's name: no Ascension stars and none of the text above (its colour still changes with the stage). The respawn boss bar is named after the dragon too.
+  // Turn this on for boss bar resource packs such as Enhanced Boss Bars, which replace the dragon's name with a picture of the bar's frame: any extra text pushes that frame off the bar.
+  // false = the name, the stars and the text above.
+  // Default: false
+  "bossBarNameOnly": false,
+
+  // ==================== Chat messages ====================
+  // Sent in chat, only to the players fighting the dragon (survival or adventure players within participantRadius).
+  // Colour codes: &0-&9 and &a-&f colours (&d pink, &5 purple, &4 dark red, &c red, &6 gold, &a green, &f white), &l bold, &o italic, &n underline, &r reset.
+  // Placeholders are replaced with numbers or text. Leave a message empty ("") to not send it.
+
+  // When stage 2 (Enraged) starts.
+  // Default: "&5&lThe Ender Dragon is Enraged! &r&5Its fury grows..."
+  "messageEnraged": "&5&lThe Ender Dragon is Enraged! &r&5Its fury grows...",
+
+  // When stage 3 (Desperate) starts and crystals come back.
+  // Default: "&4&lThe Ender Dragon is Desperate! &r&4The crystals answer its call!"
+  "messageDesperate": "&4&lThe Ender Dragon is Desperate! &r&4The crystals answer its call!",
+
+  // When the Final Stand starts. {crystals} = crystals on the pillars, {seconds} = its time limit.
+  // Default: "&4&lFinal Stand! &r&4Destroy the {crystals} crystals within {seconds}s before the dragon recovers!"
+  "messageFinalStand": "&4&lFinal Stand! &r&4Destroy the {crystals} crystals within {seconds}s before the dragon recovers!",
+
+  // When every crystal is broken during the Final Stand.
+  // Default: "&dThe Final Stand has ended!"
+  "messageFinalStandBroken": "&dThe Final Stand has ended!",
+
+  // When the Final Stand runs out of time and the dragon recovers (see finalStandMaxRepeats).
+  // Default: "&4The dragon has recovered its strength! Its Final Stand will return."
+  "messageFinalStandRecovered": "&4The dragon has recovered its strength! Its Final Stand will return.",
+
+  // When the dragon dies. {stars} = its Ascension stars (empty at level 0).
+  // Default: "&d&lThe Ender Dragon{stars} has been defeated!"
+  "messageDefeated": "&d&lThe Ender Dragon{stars} has been defeated!",
+
+  // To a player whose hit is weakened by the Crystal Shield. Sent the first time, and again whenever the number of crystals changes. {percent} = damage blocked, {crystals} = crystals left.
+  // Default: "&dThe crystals shield the dragon: {percent}% of your damage is blocked (crystals left: {crystals})."
+  "messageCrystalShield": "&dThe crystals shield the dragon: {percent}% of your damage is blocked (crystals left: {crystals}).",
+
+  // To everyone fighting when a crystal's ward is broken.
+  // Default: "&aA crystal's ward is broken! Destroy it!"
+  "messageWardBroken": "&aA crystal's ward is broken! Destroy it!",
+
+  // To a player who hits a warded crystal (once per crystal).
+  // Default: "&dThis crystal is warded. Stand in the glowing ring at the base of its pillar to break the ward."
+  "messageCrystalWarded": "&dThis crystal is warded. Stand in the glowing ring at the base of its pillar to break the ward.",
+
+  // To a player who hits the dragon during the Final Stand while crystals are alive. Sent the first time, and again whenever the number of crystals changes. {crystals} = crystals left.
+  // Default: "&4The crystals protect the dragon! Break them all first ({crystals} left)."
+  "messageFinalStandProtected": "&4The crystals protect the dragon! Break them all first ({crystals} left).",
+
+  // First dragon: a few seconds before a new End's first dragon is summoned (see firstDragonSummoning).
+  // Default: "&5&oSomething in the void stirs..."
+  "messageFirstDragonWarning": "&5&oSomething in the void stirs...",
+
+  // Respawn: to players in the End when the respawn starts.
+  // Default: "&5The crystals begin to hum... The Ender Dragon is being summoned."
+  "messageRespawnStart": "&5The crystals begin to hum... The Ender Dragon is being summoned.",
+
+  // Respawn: when the pillars start being rebuilt.
+  // Default: "&5The pillars rise!"
+  "messageRespawnPillars": "&5The pillars rise!",
+
+  // Respawn: when every pillar is rebuilt and the dragon is about to appear.
+  // Default: "&5The Ender Dragon is coming..."
+  "messageRespawnSummon": "&5The Ender Dragon is coming...",
+
+  // Respawn: when the new dragon appears. {stars} = its Ascension stars (empty at level 0).
+  // Default: "&d&lThe Ender Dragon{stars} has awakened!"
+  "messageRespawnAwakened": "&d&lThe Ender Dragon{stars} has awakened!"
+}
