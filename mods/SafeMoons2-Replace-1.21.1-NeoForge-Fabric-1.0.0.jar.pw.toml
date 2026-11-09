@@ -1,0 +1,12 @@
+name = "SafeMoons2-Replace-1.21.1-NeoForge-Fabric-1.0.0"
+filename = "SafeMoons2-Replace-1.21.1-NeoForge-Fabric-1.0.0.jar"
+side = "both"
+
+[download]
+url = "https://cdn.modrinth.com/data/QOo0CT9J/versions/1cHszWcA/SafeMoons2-Replace-1.21.1-NeoForge-Fabric-1.0.0.jar"
+hash-format = "sha512"
+hash = "9fef6d52a852ac4077b08ac2a0817a1b485578ca9c0257f856bf5585ffd5b3b7ee48205bc2ebe4e894dce95e6d65fa6e671ad7e4a056d7b2c81f2205280fe469"
+
+[update.modrinth]
+mod-id = "QOo0CT9J"
+version = "1cHszWcA"

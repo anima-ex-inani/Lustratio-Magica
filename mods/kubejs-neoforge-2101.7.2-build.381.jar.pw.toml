@@ -3,10 +3,10 @@ filename = "kubejs-neoforge-2101.7.2-build.381.jar"
 side = "both"
 
 [download]
-url = "https://edge.forgecdn.net/files/9396/059/kubejs-neoforge-2101.7.2-build.381.jar"
-hash-format = "sha1"
-hash = "c795402c73988ed0c03ce61767f9606aa1d606d8"
+url = "https://cdn.modrinth.com/data/umyGl7zF/versions/GDXCpKlp/kubejs-neoforge-2101.7.2-build.381.jar"
+hash-format = "sha512"
+hash = "f8286f9f371d0c1fb2b37e56b1dbb359dcfc5a9064a7384cbf6722450f5b5a77f05f55688d7a338b500a6f49590d51e3d3541664dfc0296e50fe573a34e5a529"
 
-[update.curseforge]
-project-id = 238086
-file-id = 9396059
+[update.modrinth]
+mod-id = "umyGl7zF"
+version = "GDXCpKlp"
